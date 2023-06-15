@@ -3,6 +3,8 @@ require("dotenv").config();
 
 const app = express();
 
+app.use(express.json());
+
 app.use("/api/auth", require("./routes/auth"));
 
 const port = process.env.PORT || 4000;

@@ -1,12 +1,40 @@
 const { Router } = require("express");
+const { check } = require("express-validator");
 
 const router = Router();
 
 const { createUser, loginUser, refreshToken } = require("../controllers/auth");
 
-router.post("/user", createUser);
+const passwordMinLength = 6;
 
-router.post("/login", loginUser);
+router.post(
+  "/user",
+  [
+    check("name", "Valid name is required").not().isEmpty(),
+    check("email", "Valid email is required").isEmail(),
+    check(
+      "password",
+      `Password must be at least ${passwordMinLength} characters`
+    ).isLength({
+      min: passwordMinLength,
+    }),
+  ],
+  createUser
+);
+
+router.post(
+  "/login",
+  [
+    check("email", "Valid email is required").isEmail(),
+    check(
+      "password",
+      `Password must be at least ${passwordMinLength} characters`
+    ).isLength({
+      min: passwordMinLength,
+    }),
+  ],
+  loginUser
+);
 
 router.get("/token", refreshToken);
 
