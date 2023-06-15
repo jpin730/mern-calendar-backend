@@ -25,3 +25,7 @@ npm test
 ## Deployed app
 
 https://jpin730.github.io/mern-calendar-frontend
+
+## Frontend repo
+
+https://github.com/jpin730/mern-calendar-frontend
