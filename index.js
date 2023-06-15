@@ -3,10 +3,7 @@ require("dotenv").config();
 
 const app = express();
 
-app.get("/", (req, res) => {
-  console.log(req.method);
-  res.send("Hello World!");
-});
+app.use("/api/auth", require("./routes/auth"));
 
 const port = process.env.PORT || 4000;
 
