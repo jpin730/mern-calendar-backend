@@ -1,8 +1,9 @@
 const User = require("../models/User");
+const encrypt = require("../utils/encrypt");
 
 const createUser = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, password } = req.body;
 
     const userExists = !!(await User.findOne({ email }));
 
@@ -13,6 +14,8 @@ const createUser = async (req, res) => {
     }
 
     const user = new User(req.body);
+
+    user.password = encrypt(password);
 
     await user.save();
 
