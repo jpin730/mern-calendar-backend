@@ -24,8 +24,36 @@ const createEvent = async (req, res) => {
   }
 };
 
-const updateEvent = (req, res) => {
-  res.json({ ok: true, msg: "updateEvent" });
+const updateEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const event = await Event.findById(id);
+
+    if (!event) {
+      return res.status(404).json({ ok: false, msg: "Event does not exist" });
+    }
+
+    if (event.user.toString() !== req.uid) {
+      return res.status(403).json({
+        ok: false,
+        msg: "Event does not belong to the user",
+      });
+    }
+
+    const newEvent = {
+      ...req.body,
+      user: req.uid,
+    };
+
+    const updatedEvent = await Event.findByIdAndUpdate(id, newEvent, {
+      new: true,
+    });
+
+    res.json({ ok: true, msg: "Event updated", updatedEvent });
+  } catch {
+    res.status(500).json({ ok: false, msg: "Server error" });
+  }
 };
 
 const deleteEvent = (req, res) => {
