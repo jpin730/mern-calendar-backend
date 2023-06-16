@@ -30,7 +30,7 @@ const createUser = async (req, res) => {
       name: user.name,
       token,
     });
-  } catch (error) {
+  } catch {
     res.status(500).json({ ok: false, msg: "Server error" });
   }
 };
@@ -64,7 +64,7 @@ const loginUser = async (req, res) => {
       name: user.name,
       token,
     });
-  } catch (error) {
+  } catch {
     res.status(500).json({ ok: false, msg: "Server error" });
   }
 };
