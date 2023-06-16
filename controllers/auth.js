@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
+const { generateJwt } = require("../helpers/jwt");
 
 const createUser = async (req, res) => {
   try {
@@ -20,9 +21,17 @@ const createUser = async (req, res) => {
 
     await user.save();
 
+    const token = await generateJwt(user.id, user.name);
+
     res
       .status(201)
-      .json({ ok: true, msg: "User created", uid: user.id, name: user.name });
+      .json({
+        ok: true,
+        msg: "User created",
+        uid: user.id,
+        name: user.name,
+        token,
+      });
   } catch (error) {
     res.status(500).json({ ok: false, msg: "Server error" });
   }
@@ -47,11 +56,18 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ ok: false, msg: "User password is incorrect" });
     }
-    // await user.save();
+
+    const token = await generateJwt(user.id, user.name);
 
     res
       .status(201)
-      .json({ ok: true, msg: "Logged in user", uid: user.id, name: user.name });
+      .json({
+        ok: true,
+        msg: "Logged in user",
+        uid: user.id,
+        name: user.name,
+        token,
+      });
   } catch (error) {
     res.status(500).json({ ok: false, msg: "Server error" });
   }
