@@ -4,6 +4,7 @@ const { check } = require("express-validator");
 const router = Router();
 
 const { createUser, loginUser, refreshToken } = require("../controllers/auth");
+const { validateFields } = require("../middlewares/validateFields");
 
 const passwordMinLength = 6;
 
@@ -18,6 +19,7 @@ router.post(
     ).isLength({
       min: passwordMinLength,
     }),
+    validateFields,
   ],
   createUser
 );
@@ -32,6 +34,7 @@ router.post(
     ).isLength({
       min: passwordMinLength,
     }),
+    validateFields,
   ],
   loginUser
 );
