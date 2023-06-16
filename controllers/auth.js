@@ -23,15 +23,13 @@ const createUser = async (req, res) => {
 
     const token = await generateJwt(user.id, user.name);
 
-    res
-      .status(201)
-      .json({
-        ok: true,
-        msg: "User created",
-        uid: user.id,
-        name: user.name,
-        token,
-      });
+    res.status(201).json({
+      ok: true,
+      msg: "User created",
+      uid: user.id,
+      name: user.name,
+      token,
+    });
   } catch (error) {
     res.status(500).json({ ok: false, msg: "Server error" });
   }
@@ -59,22 +57,24 @@ const loginUser = async (req, res) => {
 
     const token = await generateJwt(user.id, user.name);
 
-    res
-      .status(201)
-      .json({
-        ok: true,
-        msg: "Logged in user",
-        uid: user.id,
-        name: user.name,
-        token,
-      });
+    res.status(201).json({
+      ok: true,
+      msg: "Logged in user",
+      uid: user.id,
+      name: user.name,
+      token,
+    });
   } catch (error) {
     res.status(500).json({ ok: false, msg: "Server error" });
   }
 };
 
-const refreshToken = (req, res) => {
-  res.json({ ok: true, msg: "refresh token" });
+const refreshToken = async (req, res) => {
+  const { uid, name } = req;
+
+  const token = await generateJwt(uid, name);
+
+  res.json({ ok: true, msg: "Token valid", uid, name, token });
 };
 
 module.exports = { createUser, loginUser, refreshToken };
