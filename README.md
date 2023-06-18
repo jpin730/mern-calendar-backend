@@ -22,9 +22,13 @@ Run tests
 npm test
 ```
 
-## Deployed app
+## Base URL
 
-https://jpin730.github.io/mern-calendar-frontend
+https://jpin730-mern-calendar-backend.up.railway.app
+
+## API reference
+
+https://documenter.getpostman.com/view/12311811/2s93sjT8N8
 
 ## Frontend repo
 
