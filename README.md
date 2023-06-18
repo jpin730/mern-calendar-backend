@@ -22,9 +22,9 @@ Run tests
 npm test
 ```
 
-## Base URL
+## Deployed app and base URL
 
-https://jpin730-mern-calendar-backend.up.railway.app
+https://jpin730-mern-calendar.up.railway.app
 
 ## API reference
 
