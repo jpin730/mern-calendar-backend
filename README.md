@@ -22,9 +22,9 @@ Run tests
 npm test
 ```
 
-## Deployed app and base URL
+## Base URL
 
-https://jpin730-mern-calendar.up.railway.app
+https://jpin730-mern-calendar-backend.vercel.app/api
 
 ## API reference
 
