@@ -24,7 +24,7 @@ npm test
 
 ## Base URL
 
-https://jpin730-mern-calendar-backend.vercel.app/api
+https://jpin730-mern-calendar-backend.vercel.app
 
 ## API reference
 
