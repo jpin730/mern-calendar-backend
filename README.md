@@ -22,14 +22,6 @@ Run tests
 npm test
 ```
 
-## Base URL
-
-https://mern-calendar-backend-jpin730.vercel.app
-
-## API reference
-
-https://documenter.getpostman.com/view/12311811/2s93sjT8N8
-
 ## Frontend repo
 
 https://github.com/jpin730/mern-calendar-frontend
